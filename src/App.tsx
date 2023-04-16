@@ -1,25 +1,30 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {useState} from 'react';
+
+import { Box, Flex } from "@chakra-ui/react";
 import './App.css';
+import GlobalNavBar from "./components/GlobalNavBar";
+import HomePage from "./components/HomePage";
+import AboutPage from "./components/AboutPage";
 
 function App() {
+    const [isClicked, setIsClicked] = useState('menu')
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <div className='body-div'>
+          <GlobalNavBar
+              isClicked={isClicked}
+              setIsClicked={setIsClicked}
+          />
+          <Flex flexDirection='row'>
+              {isClicked == 'home' ? (
+                  <HomePage
+                      isClicked={isClicked}
+                      setIsClicked={setIsClicked}
+                  />
+              ):
+                  <AboutPage />
+              }
+          </Flex>
+      </div>
   );
 }
 
